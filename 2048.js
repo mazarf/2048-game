@@ -51,14 +51,30 @@ $( document ).ready( function() {
 				break;
 		}
 
-		if(moved)
+		if(moved) generateNum();
+		if( full() && ! matchesFound() )
 		{
-			if(generateNum() == false)
-			{
-				$( "p" ).html("You Lose!");
+				$( "p" ).html("You Lose! Final Score: " + score);
 				$( "body" ).unbind("keydown");
-			}
 		}
+	}
+
+	function matchesFound() { // horrible exhaustive search necessary to check for a loss
+		var allSquares = $( "td" );
+		for( var i = 0; i < allSquares.length; i++ )
+		{
+			var up = i - 4, down = i + 4, left = i - 1, right = i + 1;
+			var currSquare = allSquares.eq(i);
+			if( up >= 0 && areSame(currSquare, allSquares.eq(up)) ) 
+				return true;
+			else if ( down < 16 && areSame(currSquare, allSquares.eq(down)) )
+				return true; 
+			else if( left >= 0 && (i % 4 > left % 4) && areSame(currSquare, allSquares.eq(left)) )
+				return true;
+			else if( right < 16 && (i % 4 < right % 4) && areSame(currSquare, allSquares.eq(right)) )
+				return true;
+		} // for i
+		return false;
 	}
 
 	function moveDown() {
