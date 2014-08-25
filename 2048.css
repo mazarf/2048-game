@@ -1,0 +1,25 @@
+/* Stylesheet for 2048 Game */
+
+table {
+	border-style: solid;
+	border-width: 5px;
+	margin: auto;
+}
+
+td {
+	width: 100px;
+	height: 100px;
+
+	font-weight: bold;
+	font-family: sans-serif;
+	font-size: 20px;
+	text-align: center;
+}
+
+.n0				{ background-color: grey; }
+.n2, .n4 		{ background-color: blue; }
+.n8, .n16 		{ background-color: green; }
+.n32, .n64 		{ background-color: yellow; }
+.n128, .n256 	{ background-color: orange; }
+.n512, .n1024   { background-color: red; }
+.n2048			{ background-color: cyan; }
